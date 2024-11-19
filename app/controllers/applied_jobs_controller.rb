@@ -7,11 +7,13 @@ class AppliedJobsController < ApplicationController
   end
 
   def create
+    @job = Job.find_by(id: params[:applied_job][:job_id])
+    debugger
     @applied_job = current_user.applied_jobs.new(apply_job_params)
     if @applied_job.save
       redirect_to my_saved_jobs_user_saved_jobs_path
     else
-      render :new, status: :unprocessable_entity
+      redirect_to @job.company
     end
   end
 

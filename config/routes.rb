@@ -4,10 +4,11 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     passwords: 'users/passwords'
   }
+  get "register" => "home#sing_up_options"
   root 'home#index'
   resources :jobs, only: [:index, :show]
   resources :companies, only: [:index, :show]
-  resources :applied_jobs
+  resources :applied_jobs, only: [:new, :create]
   resources :user_saved_jobs do 
     collection do 
       get :my_saved_jobs

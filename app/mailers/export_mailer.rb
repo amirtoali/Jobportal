@@ -1,5 +1,6 @@
 class ExportMailer < ApplicationMailer
   def send_exported_job_applications(user, data, job, export_format)
+ 
     @user = user
     @job = job
     @export_format = export_format.upcase

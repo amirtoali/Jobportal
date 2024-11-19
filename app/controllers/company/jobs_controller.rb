@@ -24,6 +24,7 @@ class Company::JobsController < ApplicationController
     @applied_jobs = @job.applied_jobs
                         .includes(:job_seeker)
                         .filter_applications(search_params)
+  
   end
 
   def edit

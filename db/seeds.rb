@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-1000.times do |i|
+100.times do |i|
   puts "Creating company #{i+1}"
   company = Company.create(
     name: Faker::Company.name, 
@@ -35,6 +35,7 @@
     password: 'AIJP123456',
     contact_number: Faker::PhoneNumber.phone_number_with_country_code,
     confirmed_at: DateTime.now
+    
   )
 end
 
@@ -51,6 +52,7 @@ User.where(role: 'employeer').each_with_index do |employeer, i|
     applicable_for: ['Freshers', 'Intermediate', 'Experienced', 'Expert', 'Open for all'].sample,
     salary_range: ['$1000-$2500', '$2500-$5000', '$5000-$10000', '> $10000', 'Hourly'].sample,
     link_to_apply: "https://#{employeer.company.name.downcase.gsub(' ', '')}.org/careers/",
-    total_positions: rand(1..5)
+    total_positions: rand(1..5), 
+    status: ['Active', 'Inactive', 'Draft', 'Closed'].sample
   )
 end

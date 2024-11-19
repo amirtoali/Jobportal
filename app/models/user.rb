@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable, :trackable
   
   belongs_to :company, optional: true
-
+ User_role = ['employeer', 'job_seeker']
   has_many :user_saved_jobs
   has_many :jobs, through: :user_saved_jobs
   has_many :applied_jobs
@@ -13,7 +13,7 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, presence: true
   validates :contact_number, presence: true, uniqueness: true
-
+  validates :role, presence: true, inclusion: { in: User_role , message: "%{value} is not a valid status" }
   validate :company_required_if_employeer
 
   def employeer?
